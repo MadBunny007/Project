@@ -5,6 +5,7 @@ int main()
 {
 	menu callstate;
 	callstate.callmenu();
+	cout << "Have a Good Day";
 	
 
 return 0;

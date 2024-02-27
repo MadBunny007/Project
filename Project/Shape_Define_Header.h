@@ -31,7 +31,7 @@ protected:
 	bool x, y, z;
 
 public:
-
+	//construct a parameterized constructor
 	shapeplane() {
 		this->x = 0;
 		this->y = 0;
@@ -63,7 +63,7 @@ public:
 
 
 };
-class circle :public two_dimension_shapes,shapeplane {
+class circle :public two_dimension_shapes {
 protected:
 	double radius;
 	shapeplane circleplane;
@@ -85,7 +85,7 @@ public:
 	void displayplanecoord();
 
 };
-class square :public two_dimension_shapes,shapeplane {
+class square :public two_dimension_shapes {
 protected:
 	int side;
 	shapeplane squareplane;

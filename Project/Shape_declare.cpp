@@ -301,8 +301,8 @@ void warehouse::addcircle() {
 }
 void warehouse::addsphere() {
 	cout << "Enter Your Id -> ";
-	cin >> id;
 	int id;
+	cin >> id;
 	float radius;
 	int x;
 	int y;
@@ -790,6 +790,7 @@ void menu::callmenu() {
 				delete pair.second;
 			}
 			state = false;
+			break;
 		default:
 			cout << "Invalid choice." << endl;
 			// Clear input buffer
