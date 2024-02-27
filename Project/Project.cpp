@@ -5,7 +5,7 @@ int main()
 {
 	menu callstate;
 	callstate.callmenu();
-
+	cout << "main hoon don";
 
 return 0;
 }
