@@ -44,7 +44,7 @@ void warehouse::displayallshapes(int i) {
 
 			
 			elem.second->display();
-			
+			cout << "\n------------------------------\n";
 		}
 	}
 	else {
@@ -64,6 +64,8 @@ void warehouse::displayallshapes(int i) {
 
 				if (existingsphere) {
 					cout << "Shape :Sphere \n";
+					elem.second->displayplanecoord();
+					cout << '\n';
 				}
 				else if (existingcube) {
 					cout << "Shape :Cube \n";
@@ -73,7 +75,7 @@ void warehouse::displayallshapes(int i) {
 			
 
 			elem.second->display();
-
+			cout << "\n------------------------------\n";
 		}
 	}
 } 
@@ -103,12 +105,44 @@ void square::displayplanecoord() {
 	}
 	
 }
+
+void sphere::displayplanecoord() {
+	cout << "It is Present in ";
+	if (sphereplane.get_x()) {
+		cout << "x plane ";
+	}
+	if (sphereplane.get_y()) {
+		cout << "y plane ";
+	}
+	if (sphereplane.get_z()) {
+		cout << "z plane ";
+	}
+
+}
+void cube::displayplanecoord() {
+	cout << "It is Present in ";
+	if (cubeplane.get_x()) {
+		cout << "x plane ";
+	}
+	if (cubeplane.get_y()) {
+		cout << "y plane ";
+	}
+	if (cubeplane.get_z()) {
+		cout << "z plane ";
+	}
+
+}
 void square::display() {
 	cout << "The Area of Square is -> ";
 	cout << Calculate_area()<<endl;
 	cout << "The Perimeter of Square is -> ";
 
 	cout << Calculate_perimeter()<<endl;
+
+	displayplanecoord();
+
+	cout << "\n___________________________________________"<<endl;
+
 
 }
 void circle::display() {
@@ -117,6 +151,11 @@ void circle::display() {
 	cout << "The perimeter of circle is -> ";
 
 	cout << Calculate_perimeter()<<endl;
+
+	displayplanecoord();
+	cout << "\n___________________________________________"<<endl;
+
+
 
 }
 void cube::display() {
@@ -127,7 +166,18 @@ void cube::display() {
 
 	cout << Calculate_volume()<<endl;
 
+	displayplanecoord();
+	cout << "\n___________________________________________"<<endl;
+
+
 }
+cube::cube(int side, bool x, bool y, bool z) {
+	this->side = side;
+	cubeplane.set_x(x);
+	cubeplane.set_y(y);
+	cubeplane.set_z(z);
+}
+
 square::square(int side, bool x, bool y, bool z) {
 	this->side = side;
 	squareplane.set_x(x);
@@ -141,7 +191,9 @@ void sphere::display() {
 	cout << Calculate_surface_area() << endl;
 	cout << "The volume  of sphere is -> ";
 
-	cout << Calculate_volume();
+	cout << Calculate_volume()<<endl;
+	displayplanecoord();
+	cout << "___________________________________________"<<endl;
 
 }
 
@@ -150,16 +202,49 @@ void warehouse::addsquare() {
 	
 
 	int id;
-	int side;
-	bool x; bool y; bool z;
-	cout << "is square is present in x plane?\n0-->No      1-->Yes " << endl;
-	cin >> x;
-	cout << "is square is present in y plane?\n0-->No      1-->Yes " << endl;
-	cin >> y;
-	cout << "is square is present in z plane?\n0-->No      1-->Yes " << endl;
-	cin >> z;
 	cout << "Enter Your Id -> ";
 	cin >> id;
+	int side;
+	
+	int x; 
+	int y;
+    int z;
+	bool validentry = false;
+	while (!validentry) {
+		cout << "is square is present in x plane?\n0-->No      1-->Yes " << endl;
+		cin >> x;
+		if (x == 0 || x == 1) {
+			validentry = true;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in y plane?\n0-->No      1-->Yes " << endl;
+		cin >> y;
+		if (y == 0 || y == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in z plane?\n0-->No      1-->Yes " << endl;
+		cin >> z;
+		if (z == 0 || z == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+
+	}
+	
+	
+	
+	
+	
+	
 	
 	cout << "enter the side -> ";
 	cin >> side;
@@ -171,16 +256,43 @@ void warehouse::addsquare() {
 void warehouse::addcircle() {
 
 	int id;
-	int radius;
-	bool x; bool y; bool z;
-	cout << "is circle is present in x plane?\n0-->No      1-->Yes " << endl;
-	cin >> x;
-	cout << "is circle is present in y plane?\n0-->No      1-->Yes " << endl;
-	cin >> y;
-	cout << "is circle is present in z plane?\n0-->No      1-->Yes " << endl;
-	cin >> z;
 	cout << "Enter Your Id -> ";
 	cin >> id;
+	int radius;
+	int x;
+	int y;
+	int z;
+	bool validentry = false;
+	while (!validentry) {
+		cout << "is square is present in x plane?\n0-->No      1-->Yes " << endl;
+		cin >> x;
+		if (x == 0 || x == 1) {
+			validentry = true;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in y plane?\n0-->No      1-->Yes " << endl;
+		cin >> y;
+		if (y == 0 || y == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in z plane?\n0-->No      1-->Yes " << endl;
+		cin >> z;
+		if (z == 0 || z == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+
+	}
+	
 	cout << "enter the radius -> ";
 	cin >> radius;
 	arr_of_shapes[id] = new circle(radius,x,y,z);
@@ -188,14 +300,47 @@ void warehouse::addcircle() {
 
 }
 void warehouse::addsphere() {
-
-	int id;
-	float radius;
 	cout << "Enter Your Id -> ";
 	cin >> id;
+	int id;
+	float radius;
+	int x;
+	int y;
+	int z;
+	bool validentry = false;
+	while (!validentry) {
+		cout << "is square is present in x plane?\n0-->No      1-->Yes " << endl;
+		cin >> x;
+		if (x == 0 || x == 1) {
+			validentry = true;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in y plane?\n0-->No      1-->Yes " << endl;
+		cin >> y;
+		if (y == 0 || y == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in z plane?\n0-->No      1-->Yes " << endl;
+		cin >> z;
+		if (z == 0 || z == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+
+	}
+	
 	cout << "enter the radius -> ";
 	cin >> radius;
-	arr_of_shapes1[id] = new sphere(radius);
+	arr_of_shapes1[id] = new sphere(radius,x,y,z);
 	arr_of_shapes1[id]->display();
 }
 void warehouse::addcube() {
@@ -204,9 +349,42 @@ void warehouse::addcube() {
 	int side;
 	cout << "Enter Your Id -> ";
 	cin >> id;
+	int x;
+	int y;
+	int z;
+	bool validentry = false;
+	while (!validentry) {
+		cout << "is square is present in x plane?\n0-->No      1-->Yes " << endl;
+		cin >> x;
+		if (x == 0 || x == 1) {
+			validentry = true;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in y plane?\n0-->No      1-->Yes " << endl;
+		cin >> y;
+		if (y == 0 || y == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+	}
+	validentry = false;
+
+	while (!validentry) {
+		cout << "is square is present in z plane?\n0-->No      1-->Yes " << endl;
+		cin >> z;
+		if (z == 0 || z == 1) {
+			break;
+		}
+		else { cout << "Please Enter Valid No\n"; }
+
+	}
 	cout << "enter the side-> ";
 	cin >> side;
-	arr_of_shapes1[id] = new cube(side);
+	arr_of_shapes1[id] = new cube(side,x,y,z);
 	arr_of_shapes1[id]->display();
 
 }
@@ -317,10 +495,13 @@ void warehouse::deleteshape() {
 	if (arr_of_shapes.find(deleteIndex) != arr_of_shapes.end()) {
 		delete arr_of_shapes[deleteIndex];
 		arr_of_shapes.erase(deleteIndex);
+		cout << "Entry Deleted" << endl;
+
 	}
 	else if (arr_of_shapes1.find(deleteIndex) != arr_of_shapes1.end()) {
 		delete arr_of_shapes1[deleteIndex];
 		arr_of_shapes1.erase(deleteIndex);
+		cout << "Entry Deleted" << endl;
 	}
 	else {
 		cout << "Invalid index." << endl;
@@ -393,7 +574,14 @@ void circle::manualdisplay_area(int i) {
 	cout << warehouse::arr_of_shapes[i]->Calculate_area();
 
 }
-
+sphere::sphere(float radius, bool x, bool y, bool z) {
+	this->radius = radius;
+	sphereplane.set_x(x);
+	sphereplane.set_y(y);
+	sphereplane.set_z(z);
+			
+			
+}
 void sphere::manualdisplay_volume(int i) {
 	cout << warehouse::arr_of_shapes1[i]->Calculate_volume();
 
@@ -576,11 +764,20 @@ void menu::callmenu() {
 			}
 			break;
 		case 6:
+			cout << "      1.2D shape     \n      2.3D shape    \n";
+			int no;
+			cin >> no;
 			int id;
-			cout << "Enter ID to Search -> ";
-			cin >> id;
-			w1.arr_of_shapes[id]->display();
-
+			if (no == 1) {
+				cout << "Enter ID to Search -> ";
+				cin >> id;
+				w1.arr_of_shapes[id]->display();
+			}
+			else{
+				cout << "Enter ID to Search -> ";
+				cin >> id;
+				w1.arr_of_shapes1[id]->display();
+			}
 
 			break;
 		case 7:

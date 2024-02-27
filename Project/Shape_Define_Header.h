@@ -119,6 +119,7 @@ public:
 	virtual double Calculate_surface_area() = 0;
 	virtual double Calculate_volume() = 0;
 	virtual void display()=0;
+	virtual void displayplanecoord()=0;
 	
 
 };
@@ -126,11 +127,11 @@ public:
 class sphere :public three_dimension_shapes {
 protected:
 	float radius;
-	
+	shapeplane sphereplane;
 public:
-	sphere(float radius) {
-		this->radius = radius;
-	}
+	sphere(float radius, bool x, bool y, bool z);
+		
+	
 	void set_radius(float radius);
 	void set_radius();
 	double get_radius();
@@ -139,7 +140,7 @@ public:
 	void manualdisplay_volume(int i);
 	void manualdisplay_surfacearea(int i);
 	void display();
-	
+	void displayplanecoord();
 
 
 
@@ -148,10 +149,11 @@ public:
 class cube :public three_dimension_shapes {
 protected:
 	int side;
+	shapeplane cubeplane;
 public:
-	cube(int side) {
-		this->side = side;
-	}
+	cube(int side, bool x, bool y, bool z);
+		
+	
 	void set_side(int side);
 
 	
@@ -162,6 +164,7 @@ public:
 	void manualdisplay_volume(int i);
 	void manualdisplay_surfacearea(int i);
 	void display();
+	void displayplanecoord();
 
 };
 class warehouse {
